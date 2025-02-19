@@ -163,6 +163,7 @@ export default function AddBook() {
             fetchBooks(token, currentPage);
             logActivity(`Book ${method === "PUT" ? "updated" : "added"}: ${title}`);
             alert(`Book ${data?.id ? "updated" : "added"} successfully!`);
+            setData(null);
         } catch (err: any) {
             setError(err.message);
         }
