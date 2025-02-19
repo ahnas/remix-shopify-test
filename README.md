@@ -1,3 +1,9 @@
+
+
+
+https://github.com/user-attachments/assets/98c2b99d-4ebc-4735-aaa5-d7e7913cb98d
+
+
 # Shopify Remix App - Dashboard
 
 This is a **Remix** application for managing authors and their books in a Shopify-like ecosystem. The dashboard allows users to view, delete, and navigate to individual authors.
