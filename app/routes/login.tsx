@@ -1,7 +1,15 @@
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
 import { useNavigation } from "@remix-run/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Shopify Remix App - Login" },
+    { name: "description", content: "Welcome to Shopify Remix App!" },
+  ];
+};
 
 export const action = async ({ request }: { request: Request }) => {
   const formData = await request.formData();
@@ -21,22 +29,27 @@ export const action = async ({ request }: { request: Request }) => {
     const data = await response.json();
     return json({ token: data.token_key });
   } else {
-    const errorData = await response.json();
-    return json({ error: errorData.message }, { status: response.status });
+    return json({ error: "Invalid email or password" }, { status: response.status });
   }
 };
 
 export default function LoginPage() {
   const actionData = useActionData<any>();
   const transition = useNavigation();
-
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (actionData?.token) {
       localStorage.setItem("auth_token", actionData.token);
       window.location.href = "/dashboard";
     }
+    if (actionData ===403) {
+        setError("Invalid email or password");
+    }
   }, [actionData]);
+
+
+
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
