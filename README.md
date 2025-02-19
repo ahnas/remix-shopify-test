@@ -1,40 +1,72 @@
-# Welcome to Remix!
+# Shopify Remix App - Dashboard
 
-- 📖 [Remix docs](https://remix.run/docs)
+This is a **Remix** application for managing authors and their books in a Shopify-like ecosystem. The dashboard allows users to view, delete, and navigate to individual authors.
 
-## Development
+## Features
 
-Run the dev server:
+- **Authentication Handling:** Redirects users to login if no authentication token is found.
+- **Fetch Authors List:** Retrieves and displays a list of authors from the API.
+- **Fetch Books List:** Retrieves and displays a list of books from the API.
+- **Pagination in Books List and Search:** Retrieves and Paginated a list of books from the API also added Search.
+- **Fetch Book Count for Authors:** Fetches and displays the number of books associated with each author.
+- **View Author Details:** Allows users to navigate to individual author details.
+- **Delete Author:** Removes an author if they have no associated books.
 
-```shellscript
-npm run dev
-```
+## Technologies Used
 
-## Deployment
+- **Remix (React Framework)** - For server-side rendering and routing.
+- **TypeScript** - For type safety and better code maintainability.
+- **Tailwind CSS** - For styling the components.
+- **Remix Hooks:** `useEffect`, `useState`, `useCallback`.
+- **Fetch API** - For making API requests.
 
-First, build your app for production:
+## Installation & Setup
 
-```sh
-npm run build
-```
+1. **Clone the repository**
+   ```sh
+   git clone https://github.com/your-repo/shopify-remix-app.git
+   cd shopify-remix-app
+   ```
 
-Then run the app in production mode:
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
 
-```sh
-npm start
-```
+3. **Start the development server**
+   ```sh
+   npm run dev
+   ```
 
-Now you'll need to pick a host to deploy it to.
+4. Open `http://localhost:5173` in your browser.
 
-### DIY
+## API Endpoints
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+### Authentication
+- **POST** `https://candidate-testing.api.royal-apps.io/api/v2/token` - Login user
 
-Make sure to deploy the output of `npm run build`
+### Fetch Authors
+- **Endpoint:** `GET https://candidate-testing.api.royal-apps.io/api/v2/authors`
+- **Headers:** `{ Authorization: 'Bearer <token>', Accept: 'application/json' }`
 
-- `build/server`
-- `build/client`
 
-## Styling
+### Fetch Books
+- **Endpoint:**  `GET https://candidate-testing.com/api/v2/books/`
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+### Delete and Edit Book
+- **Endpoint:**  `DELETE https://candidate-testing.com/api/v2/books/{book_id}`
+- **Endpoint:**  `EDIT https://candidate-testing.com/api/v2/books/{book_id}`
+
+### Fetch Books for an Author
+- **Endpoint:** `GET https://candidate-testing.api.royal-apps.io/api/v2/authors/{author_id}/`
+- **Headers:** `{ Authorization: 'Bearer <token>', Accept: 'application/json' }`
+
+### Delete an Author
+- **Endpoint:** `DELETE https://candidate-testing.api.royal-apps.io/api/v2/authors/{author_id}`
+- **Headers:** `{ Authorization: 'Bearer <token>', Accept: 'application/json' }`
+
+
+---
+
+Happy coding! 🚀
+
